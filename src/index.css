@@ -13,7 +13,22 @@ code {
 }
 
 
-h2 {
+/* h2 {
   margin: auto;
   text-align: center;
+} */
+
+a {
+  text-decoration: none !important;
+  margin-right: 8px;
+}
+
+form {
+  width: 50%;
+  margin: auto;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 8px;
 }

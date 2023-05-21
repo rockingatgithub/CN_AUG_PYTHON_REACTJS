@@ -1,6 +1,8 @@
 import { GoogleLogin } from "@react-oauth/google"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 const UserForm = (props) => {
 
@@ -74,23 +76,36 @@ const UserForm = (props) => {
 
     return <>
         <h2>{props.heading}</h2>
-        <form onSubmit={submitHandler} >
+
+        <Form onSubmit={submitHandler}>
 
             {props.isSignup &&
-                <> Name:- <input type="text" value={name} onChange={(event) => setName(event.target.value)} />
-                    <br />
-                    Roll:- <input type="text" value={roll} onChange={(event) => setRoll(event.target.value)} />
-                    <br />
-                </>}
+                <>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control type="text" placeholder="Enter name" value={name} onChange={(event) => setName(event.target.value)} />
+                    </Form.Group>
 
-            Email:- <input type="text" value={email} onChange={(event) => setEmail(event.target.value)} />
-            <br />
-            Passowrd:- <input type="text" value={password} onChange={(event) => setPassword(event.target.value)} />
-            <br />
-            <button type="submit" > Submit </button>
-        </form>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Roll</Form.Label>
+                        <Form.Control type="password" placeholder="Roll" value={roll} onChange={(event) => setRoll(event.target.value)} />
+                    </Form.Group></>
+            }
 
-        <GoogleLogin
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control type="email" placeholder="Enter email" value={email} onChange={(event) => setEmail(event.target.value)} />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} />
+            </Form.Group>
+
+            <Button variant="primary" type="submit">
+                Submit
+            </Button>
+            <GoogleLogin
             onSuccess={credentialResponse => {
                 googleLoginHandler(credentialResponse);
             }}
@@ -98,6 +113,7 @@ const UserForm = (props) => {
                 console.log('Login Failed');
             }}
         />
+        </Form>
 
     </>
 
