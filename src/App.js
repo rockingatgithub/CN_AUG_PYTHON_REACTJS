@@ -14,7 +14,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={<UserForm isSignup heading={'Signup Form'} setUser={setUser} />} />
       <Route path="/signin" element={<UserForm isSignup={false} heading={'Signin Form'} setUser={setUser} />} />
-      <Route path="/dashboard" element={<Dashboard user={user} />} />
+      <Route path="/dashboard" element={<Dashboard user={user} setUser={setUser} />} />
     </Routes>
 
   </>

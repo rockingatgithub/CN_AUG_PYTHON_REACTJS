@@ -1,6 +1,7 @@
 import { GoogleLogin } from "@react-oauth/google"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import Cookie from 'js-cookie'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
@@ -28,7 +29,7 @@ const UserForm = (props) => {
         let response
 
         if (props.isSignup) {
-            response = await fetch('http://localhost:8000/student', {
+            response = await fetch('http://localhost:8000/api/v1/student', {
 
                 method: "POST",
                 body: JSON.stringify(userSignupObj),
@@ -38,7 +39,7 @@ const UserForm = (props) => {
 
             })
         } else {
-            response = await fetch('http://localhost:8000/jwt', {
+            response = await fetch('http://localhost:8000/api/v1/auth/jwt', {
 
                 method: "POST",
                 body: JSON.stringify(userObj),
@@ -57,7 +58,7 @@ const UserForm = (props) => {
 
     const googleLoginHandler = async (credentialResponse) => {
 
-        const loginResponse = await fetch('http://localhost:8000/google', {
+        const loginResponse = await fetch('http://localhost:8000/api/v1/auth/google', {
             method: "POST",
             body: JSON.stringify({
                 token: credentialResponse.credential
@@ -70,6 +71,7 @@ const UserForm = (props) => {
         const parsedResponse = await loginResponse.json()
         console.log("the google response", parsedResponse)
         props.setUser(parsedResponse.student)
+        Cookie.set('user', parsedResponse.token)
         navigate('/dashboard')
 
     }
