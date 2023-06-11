@@ -30,10 +30,10 @@ const Dashboard = (props) => {
         <div>
             <h2> Profile </h2>
             <div>
-                Name:-  {props.user.name}
+                Name:-  {props.user?.name}
             </div>
             <div>
-                Email:-  {props.user.email}
+                Email:-  {props.user?.email}
             </div>
 
             <form onSubmit={submitHandler} >
