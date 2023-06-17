@@ -5,6 +5,8 @@ import Cookie from 'js-cookie'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { ADMIN_SIGNIN_URL, ADMIN_SIGNUP_URL, STUDENT_SIGNIN_URL, STUDENT_SIGNUP_URL } from "../constants";
+import { connect, useDispatch } from "react-redux";
+import { incrementHandler } from "../actions/auth";
 
 const UserForm = (props) => {
 
@@ -13,9 +15,9 @@ const UserForm = (props) => {
     const [email, setEmail] = useState('')
     const [isAdmin, setAdmin] = useState(false)
     const [password, setPassword] = useState('')
+    const dispatch = useDispatch()
 
     const navigate = useNavigate()
-
 
     const submitHandler = async (event) => {
         event.preventDefault()
@@ -84,6 +86,8 @@ const UserForm = (props) => {
 
     // console.log(isAdmin)
 
+    console.log("Store state", props.main)
+
     return <>
         <h2>{props.heading}</h2>
 
@@ -136,8 +140,21 @@ const UserForm = (props) => {
         />
         </Form>
 
+
+        <div>
+
+            <button onClick={() => dispatch(incrementHandler(10))} > Increment </button>
+            <span>{props.main.counter}</span>
+
+        </div>
+
     </>
 
 }
 
-export default UserForm
+const mapStateToProps = state => {
+    return { main: state }
+}
+
+export default connect(mapStateToProps)(UserForm)
+
