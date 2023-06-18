@@ -1,6 +1,7 @@
 import React from 'react';
-import {createStore} from 'redux'
+import {applyMiddleware, createStore} from 'redux'
 import {Provider} from 'react-redux'
+import thunk from 'redux-thunk'
 import ReactDOM from 'react-dom/client';
 import {BrowserRouter} from 'react-router-dom'
 import {GoogleOAuthProvider} from '@react-oauth/google'
@@ -9,7 +10,7 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import mainReducer from './components/reducers/main';
 
-const store = createStore(mainReducer)
+const store = createStore(mainReducer, applyMiddleware(thunk))
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

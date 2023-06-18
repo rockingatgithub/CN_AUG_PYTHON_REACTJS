@@ -14,6 +14,9 @@ function mainReducer (state=initialState, action) {
         case 'DEC_COUNTER':
         
             return { ...state, counter: state.counter - action.data }
+        
+        case 'USER_LOGIN':
+            return {...state, user: action.data}
     
         default:
             return state

@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { ADMIN_SIGNIN_URL, ADMIN_SIGNUP_URL, STUDENT_SIGNIN_URL, STUDENT_SIGNUP_URL } from "../constants";
 import { connect, useDispatch } from "react-redux";
-import { incrementHandler } from "../actions/auth";
+import { authenticationHandler, decrementHandler, incrementHandler } from "../actions/auth";
 
 const UserForm = (props) => {
 
@@ -21,46 +21,14 @@ const UserForm = (props) => {
 
     const submitHandler = async (event) => {
         event.preventDefault()
-
         const userSignupObj = {
             email,
             password,
             name,
             roll
         }
-
         const userObj = { email, password }
-
-        let response
-        const url = isAdmin ? ADMIN_SIGNUP_URL : STUDENT_SIGNUP_URL
-
-        if (props.isSignup) {
-            const url = isAdmin ? ADMIN_SIGNUP_URL : STUDENT_SIGNUP_URL
-            response = await fetch(url, {
-
-                method: "POST",
-                body: JSON.stringify(userSignupObj),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-
-            })
-        } else {
-            const url = isAdmin ? ADMIN_SIGNIN_URL : STUDENT_SIGNIN_URL
-            response = await fetch(url, {
-
-                method: "POST",
-                body: JSON.stringify(userObj),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-
-            })
-        }
-
-
-        const parsedResponse = await response.json()
-        props.setUser(parsedResponse.user)
+        dispatch(authenticationHandler(userObj, userSignupObj, props.isSignup, isAdmin))
         navigate('/dashboard')
     }
 
@@ -83,8 +51,6 @@ const UserForm = (props) => {
         navigate('/dashboard')
 
     }
-
-    // console.log(isAdmin)
 
     console.log("Store state", props.main)
 
@@ -145,6 +111,7 @@ const UserForm = (props) => {
 
             <button onClick={() => dispatch(incrementHandler(10))} > Increment </button>
             <span>{props.main.counter}</span>
+            <button onClick={() => dispatch(decrementHandler(10))} > Decrement </button>
 
         </div>
 
