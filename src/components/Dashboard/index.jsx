@@ -1,5 +1,6 @@
 import Cookies from "js-cookie"
 import { useState } from "react"
+import { connect } from "react-redux"
 
 const Dashboard = (props) => {
 
@@ -26,14 +27,16 @@ const Dashboard = (props) => {
 
     }
 
+    console.log("Profile data: ", props.profile)
+
     return (
         <div>
             <h2> Profile </h2>
             <div>
-                Name:-  {props.user?.name}
+                Name:-  {props.profile.user?.name}
             </div>
             <div>
-                Email:-  {props.user?.email}
+                Email:-  {props.profile.user?.email}
             </div>
 
             <form onSubmit={submitHandler} >
@@ -48,4 +51,8 @@ const Dashboard = (props) => {
 
 }
 
-export default Dashboard
+const mapStateToProps = state => {
+    return { profile: state  }
+}
+
+export default connect(mapStateToProps)(Dashboard)

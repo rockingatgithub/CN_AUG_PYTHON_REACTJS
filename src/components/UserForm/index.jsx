@@ -1,12 +1,12 @@
 import { GoogleLogin } from "@react-oauth/google"
-import { useState } from "react"
+import { useReducer, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Cookie from 'js-cookie'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { ADMIN_SIGNIN_URL, ADMIN_SIGNUP_URL, STUDENT_SIGNIN_URL, STUDENT_SIGNUP_URL } from "../constants";
 import { connect, useDispatch } from "react-redux";
-import { authenticationHandler, decrementHandler, incrementHandler } from "../actions/auth";
+import { authenticationHandler, decrementHandler, googleAuthHandler, incrementHandler } from "../actions/auth";
 
 const UserForm = (props) => {
 
@@ -34,25 +34,11 @@ const UserForm = (props) => {
 
     const googleLoginHandler = async (credentialResponse) => {
 
-        const loginResponse = await fetch('http://localhost:8000/api/v1/auth/google', {
-            method: "POST",
-            body: JSON.stringify({
-                token: credentialResponse.credential
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-
-        const parsedResponse = await loginResponse.json()
-        console.log("the google response", parsedResponse)
-        props.setUser(parsedResponse.student)
-        Cookie.set('user', parsedResponse.token)
+        dispatch(googleAuthHandler(credentialResponse.credential))
+        Cookie.set('user', props.main.token)
         navigate('/dashboard')
 
     }
-
-    console.log("Store state", props.main)
 
     return <>
         <h2>{props.heading}</h2>

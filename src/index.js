@@ -15,10 +15,10 @@ const store = createStore(mainReducer, applyMiddleware(thunk))
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Provider store={store} >
-    <BrowserRouter>
-        <GoogleOAuthProvider clientId='877608648724-rjcmq7oemsqjbu3r8k9rqo1i7jsu9h8b.apps.googleusercontent.com' >
-            <App />
-        </GoogleOAuthProvider>
-    </BrowserRouter>
+        <BrowserRouter>
+            <GoogleOAuthProvider clientId='877608648724-rjcmq7oemsqjbu3r8k9rqo1i7jsu9h8b.apps.googleusercontent.com' >
+                <App />
+            </GoogleOAuthProvider>
+        </BrowserRouter>
     </Provider>
 );

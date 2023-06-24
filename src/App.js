@@ -6,15 +6,13 @@ import UserForm from "./components/UserForm"
 
 const App = () => {
 
-  const [user, setUser] = useState({})
-
   return <>
 
     <NavbarComponent/>
     <Routes>
-      <Route path="/" element={<UserForm isSignup heading={'Signup Form'} setUser={setUser} />} />
-      <Route path="/signin" element={<UserForm isSignup={false} heading={'Signin Form'} setUser={setUser} />} />
-      <Route path="/dashboard" element={<Dashboard user={user} setUser={setUser} />} />
+      <Route path="/" element={<UserForm isSignup heading={'Signup Form'} />} />
+      <Route path="/signin" element={<UserForm isSignup={false} heading={'Signin Form'}  />} />
+      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
 
   </>

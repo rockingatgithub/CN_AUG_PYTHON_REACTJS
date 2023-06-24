@@ -51,9 +51,30 @@ export const authenticationHandler = (userObj, userSignupObj, isSignup, isAdmin)
     
     
         const parsedResponse = await response.json()
-        // props.setUser(parsedResponse.user)
     
-        dispatch({ type: 'USER_LOGIN', data: parsedResponse.user })
+        dispatch({ type: 'USER_LOGIN', data: parsedResponse })
+    }
+
+}
+
+
+export const googleAuthHandler = (credential) => {
+
+    return async (dispatch, getState) => {
+
+        const loginResponse = await fetch('http://localhost:8000/api/v1/auth/google', {
+            method: "POST",
+            body: JSON.stringify({
+                token: credential
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        const parsedResponse = await loginResponse.json()
+        dispatch({ type: 'USER_LOGIN', data: parsedResponse })
+        // Cookie.set('user', parsedResponse.token)
     }
 
 }
