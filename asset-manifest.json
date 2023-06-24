@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/CN_AUG_PYTHON_REACTJS/static/css/main.d990481e.css",
+    "main.js": "/CN_AUG_PYTHON_REACTJS/static/js/main.789b4d96.js",
+    "index.html": "/CN_AUG_PYTHON_REACTJS/index.html",
+    "main.d990481e.css.map": "/CN_AUG_PYTHON_REACTJS/static/css/main.d990481e.css.map",
+    "main.789b4d96.js.map": "/CN_AUG_PYTHON_REACTJS/static/js/main.789b4d96.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d990481e.css",
+    "static/js/main.789b4d96.js"
+  ]
+}
