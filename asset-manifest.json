@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/CN_AUG_PYTHON_REACTJS/static/css/main.d990481e.css",
-    "main.js": "/CN_AUG_PYTHON_REACTJS/static/js/main.46db92ee.js",
+    "main.js": "/CN_AUG_PYTHON_REACTJS/static/js/main.25485528.js",
     "index.html": "/CN_AUG_PYTHON_REACTJS/index.html",
     "main.d990481e.css.map": "/CN_AUG_PYTHON_REACTJS/static/css/main.d990481e.css.map",
-    "main.46db92ee.js.map": "/CN_AUG_PYTHON_REACTJS/static/js/main.46db92ee.js.map"
+    "main.25485528.js.map": "/CN_AUG_PYTHON_REACTJS/static/js/main.25485528.js.map"
   },
   "entrypoints": [
     "static/css/main.d990481e.css",
-    "static/js/main.46db92ee.js"
+    "static/js/main.25485528.js"
   ]
 }
